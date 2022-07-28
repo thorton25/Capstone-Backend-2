@@ -28,20 +28,11 @@ public class Report {
 	@Column (name = "DESCRIPTION")
 	private String description;
 	
-	@Column (name = "TITLE")
-	private String title;
-	
-	@Column (name = "ABSTRACT")
-	private String abstrct;
-	
 	@Column (name = "EXPIRATIONDAYS")
 	private Integer expirationDays;
 	
 	@Column (name = "SKIPPAGES")
 	private Integer skipPages;
-	
-	@Column (name = "UPLOADEDFILENAME")
-	private String uploadedFileName;
 	
 	@Column (name = "CREATIONDATE")
 	private String creationDate;
@@ -61,14 +52,8 @@ public class Report {
 	@Column (name = "STATUS")
 	private char status;
 	
-	@Column (name = "DELETEDBY")
-	private String deletedBy;
-	
 	@Column (name = "MULTIREPORTS")
 	private String multiReports;
-	
-	@Column (name = "FILENAME")
-	private String fileName;
 	
 	@Column (name = "ALLOWOVERRIDES")
 	private Integer allowOverrides;
@@ -81,9 +66,6 @@ public class Report {
 	
 	@Column (name = "BIREPORT")
 	private String biReport;
-	
-	@Column (name = "HELPURL")
-	private String helpUrl;
 	
 	@Column (name = "HELP")
 	private String help;
@@ -99,10 +81,10 @@ public class Report {
 	}
 
 	public Report(Long id, String name, Integer historyMaxDays, Integer nonSpoolFile, String description,
-			String title, String abstrct, Integer expirationDays, Integer skipPages, String uploadedFileName,
+			Integer expirationDays, Integer skipPages,
 			String creationDate, String allowPrint, String addedBy, String modifiedBy, Integer as400Id, char status,
-			String deletedBy, String multiReports, String fileName, Integer allowOverrides, Integer numCols,
-			String confidential, String biReport, String helpUrl, String help, String detailDescription,
+			String multiReports, Integer allowOverrides, Integer numCols,
+			String confidential, String biReport, String help, String detailDescription,
 			Integer combinePdfReport) {
 		super();
 		this.id = id;
@@ -110,25 +92,19 @@ public class Report {
 		this.historyMaxDays = historyMaxDays;
 		this.nonSpoolFile = nonSpoolFile;
 		this.description = description;
-		this.title = title;
-		this.abstrct = abstrct;
 		this.expirationDays = expirationDays;
 		this.skipPages = skipPages;
-		this.uploadedFileName = uploadedFileName;
 		this.creationDate = creationDate;
 		this.allowPrint = allowPrint;
 		this.addedBy = addedBy;
 		this.modifiedBy = modifiedBy;
 		this.as400Id = as400Id;
 		this.status = status;
-		this.deletedBy = deletedBy;
 		this.multiReports = multiReports;
-		this.fileName = fileName;
 		this.allowOverrides = allowOverrides;
 		this.numCols = numCols;
 		this.confidential = confidential;
 		this.biReport = biReport;
-		this.helpUrl = helpUrl;
 		this.help = help;
 		this.detailDescription = detailDescription;
 		this.combinePdfReport = combinePdfReport;
@@ -174,22 +150,6 @@ public class Report {
 		this.description = description;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getAbstrct() {
-		return abstrct;
-	}
-
-	public void setAbstrct(String abstrct) {
-		this.abstrct = abstrct;
-	}
-
 	public Integer getExpirationDays() {
 		return expirationDays;
 	}
@@ -204,14 +164,6 @@ public class Report {
 
 	public void setSkipPages(Integer skipPages) {
 		this.skipPages = skipPages;
-	}
-
-	public String getUploadedFileName() {
-		return uploadedFileName;
-	}
-
-	public void setUploadedFileName(String uploadedFileName) {
-		this.uploadedFileName = uploadedFileName;
 	}
 
 	public String getCreationDate() {
@@ -262,28 +214,12 @@ public class Report {
 		this.status = status;
 	}
 
-	public String getDeletedBy() {
-		return deletedBy;
-	}
-
-	public void setDeletedBy(String deletedBy) {
-		this.deletedBy = deletedBy;
-	}
-
 	public String getMultiReports() {
 		return multiReports;
 	}
 
 	public void setMultiReports(String multiReports) {
 		this.multiReports = multiReports;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
 	}
 
 	public Integer getAllowOverrides() {
@@ -318,14 +254,6 @@ public class Report {
 		this.biReport = biReport;
 	}
 
-	public String getHelpUrl() {
-		return helpUrl;
-	}
-
-	public void setHelpUrl(String helpUrl) {
-		this.helpUrl = helpUrl;
-	}
-
 	public String getHelp() {
 		return help;
 	}
@@ -350,7 +278,5 @@ public class Report {
 		this.combinePdfReport = combinePdfReport;
 	}
 
-	
-	
 
 }

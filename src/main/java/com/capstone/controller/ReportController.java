@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capstone.dao.ReportMapper;
 import com.capstone.exception.ResourceNotFoundException;
 import com.capstone.model.Report;
 import com.capstone.repository.ReportRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 public class ReportController {
@@ -28,11 +29,22 @@ public class ReportController {
 	@Autowired
 	private ReportRepository reportRepository;
 	
+	@Autowired
+	private ReportMapper reportMapper;
+	
 
 	@GetMapping("/reports")
 	public List<Report> getAllReportss(){
 		return reportRepository.findAll();
-	}		
+		//return reportMapper.getAllReports();
+	}
+	    
+	@GetMapping("/reports/results")
+	  public ResponseEntity<List<Report>> findByActiveAndNameContaining(String name) {
+	      List<Report> reports = reportRepository.findByStatusIsAndNameContaining('A', "d");
+	      return ResponseEntity.ok(reports);
+	      
+	  }
 	
 	@PostMapping("/reports")
 	public Report createReport(@RequestBody Report report) {
@@ -69,4 +81,7 @@ public class ReportController {
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
+	
+	
+	
 }

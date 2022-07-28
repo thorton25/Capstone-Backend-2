@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.capstone.model.Report;
 import com.capstone.util.MyBatisUtil;
@@ -32,7 +33,7 @@ public class ReportMapper {
 		session.close();
 	}
 	
-	public List<Report> searchReports(@Param(value = "name") String name){
+	public List<Report> searchReports(@PathVariable String name){
 		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 		List<Report> reportsList = session.selectList("searchReports");
 		session.commit();

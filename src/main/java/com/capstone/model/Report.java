@@ -2,10 +2,18 @@ package com.capstone.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "t_report")
@@ -76,6 +84,11 @@ public class Report {
 	@Column (name = "COMBINE_PDF_REPORT")
 	private Integer combinePdfReport;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="REPORTID")
+	@Fetch(FetchMode.JOIN)
+	private Alias alias;
+	
 	public Report() {
 		
 	}
@@ -85,7 +98,7 @@ public class Report {
 			String creationDate, String allowPrint, String addedBy, String modifiedBy, Integer as400Id, char status,
 			String multiReports, Integer allowOverrides, Integer numCols,
 			String confidential, String biReport, String help, String detailDescription,
-			Integer combinePdfReport) {
+			Integer combinePdfReport, Alias alias) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -108,6 +121,7 @@ public class Report {
 		this.help = help;
 		this.detailDescription = detailDescription;
 		this.combinePdfReport = combinePdfReport;
+		this.alias = alias;
 	}
 
 	public Long getId() {
@@ -276,6 +290,14 @@ public class Report {
 
 	public void setCombinePdfReport(Integer combinePdfReport) {
 		this.combinePdfReport = combinePdfReport;
+	}
+
+	public Alias getAlias() {
+		return alias;
+	}
+
+	public void setAlias(Alias alias) {
+		this.alias = alias;
 	}
 
 

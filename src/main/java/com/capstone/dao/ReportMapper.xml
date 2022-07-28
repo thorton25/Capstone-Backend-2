@@ -28,13 +28,14 @@
 		<result property="combinePdfReport" column="COMBINE_PDF_REPORT" />
 	</resultMap>
 	
+	
+	
 	<select id="getAllReports" resultType="report" resultMap="result">
 		SELECT * FROM t_report
 	</select>
 	
-	<select id="searchReports" parameterType="String" resultType="report" resultMap="result">
-	    SELECT  *  FROM t_report WHERE STATUS = 'A', AND REPORTNAME LIKE #{name} '%'
-
+	<select id="searchReports" resultType="report" resultMap="result">
+	    SELECT  *  FROM t_report WHERE STATUS = 'A' AND REPORTNAME LIKE %#{name}%
 	</select>
 	
 	

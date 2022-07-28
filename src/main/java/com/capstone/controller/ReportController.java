@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,12 +40,18 @@ public class ReportController {
 		//return reportMapper.getAllReports();
 	}
 	    
-	@GetMapping("/reports/results")
-	  public ResponseEntity<List<Report>> findByActiveAndNameContaining(String name) {
-	      List<Report> reports = reportRepository.findByStatusIsAndNameContaining('A', "d");
+	@GetMapping("/reports/results/{name}")
+	  public ResponseEntity<List<Report>> findByActiveAndNameContaining(@PathVariable String name) {
+	      List<Report> reports = reportRepository.findByStatusIsAndNameContaining('A', name);
 	      return ResponseEntity.ok(reports);
 	      
 	  }
+	
+//	@GetMapping("/reports/results/{name}")
+//	public ResponseEntity<List<Report>> findAllContatining(@PathVariable String name){
+//		List<Report> searchedReports = reportMapper.searchReports(name);
+//		return ResponseEntity.ok(searchedReports);
+//	}
 	
 	@PostMapping("/reports")
 	public Report createReport(@RequestBody Report report) {
@@ -71,7 +78,21 @@ public class ReportController {
 		return ResponseEntity.ok(updatedReport);
 	}
 	
-	@DeleteMapping("/reports/{id}")
+	
+	@PutMapping("/reports/deactivate/{id}")
+	public ResponseEntity<Report> deactivateReport(@PathVariable Long id){
+		Report report = reportRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Report does not exist with id :" + id));
+		
+		//report.setName(reportDetails.getName());
+		report.setStatus('D');
+		
+		Report updatedReport = reportRepository.save(report);
+		return ResponseEntity.ok(updatedReport);
+	}
+	
+	
+	@DeleteMapping("/reports/live/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteReport(@PathVariable Long id){
 		Report report = reportRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Report does not exist with id :" + id));

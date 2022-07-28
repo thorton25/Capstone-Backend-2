@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.capstone.dao.AliasMapper">
+	
+	<resultMap type="alias" id="result">
+		<id property="aliasId" column="ALIASID" />
+		<result property="reportId" column="REPORTID"/>
+		<result property="aliasName" column="ALIAS" />
+	</resultMap>
+	
+	
+	
+	<select id="searchByAlias" resultType="alias" resultMap="result">
+		SELECT t_report.REPORTNAME, ALIAS FROM t_report INNER JOIN t_alias ON t_report.REPORTID WHERE ALIAS LIKE "%SVP%"
+	</select>
+	
+	<select id="searchbyReport" parameterType="String" resultType="report" resultMap="result">
+	    SELECT t_report.REPORTNAME, ALIAS FROM t_report INNER JOIN t_alias ON t_report.REPORTID WHERE REPORTNAME LIKE "%d%";
+	</select>
+	
+	
+	
+</mapper>

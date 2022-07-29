@@ -1,5 +1,7 @@
 package com.capstone.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,12 +19,12 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "t_report")
-public class Report {
+public class Report implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "REPORTID")
-	private Long id;
+	private Integer id;
 	
 	@Column (name = "REPORTNAME")
 	private String name;
@@ -93,7 +95,7 @@ public class Report {
 		
 	}
 
-	public Report(Long id, String name, Integer historyMaxDays, Integer nonSpoolFile, String description,
+	public Report(Integer id, String name, Integer historyMaxDays, Integer nonSpoolFile, String description,
 			Integer expirationDays, Integer skipPages,
 			String creationDate, String allowPrint, String addedBy, String modifiedBy, Integer as400Id, char status,
 			String multiReports, Integer allowOverrides, Integer numCols,
@@ -124,11 +126,11 @@ public class Report {
 		this.alias = alias;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

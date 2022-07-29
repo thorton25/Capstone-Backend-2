@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "t_users")
 public class Users {
 	
-	
+	@Id
 	@Column (name = "USERNAME")
 	private String userName;
 	

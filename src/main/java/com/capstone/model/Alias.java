@@ -1,4 +1,6 @@
 package com.capstone.model;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,14 +13,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_alias")
-public class Alias {
+public class Alias implements Serializable {
 	
 	@Id
 	@Column (name = "ALIASID")
-	private Long aliasId;
+	private Integer aliasId;
 	
 	@Column (name = "REPORTID")
-	private Long reportId;
+	private Integer reportId;
 	
 	@Column (name = "ALIAS")
 	private String aliasName;
@@ -29,8 +31,14 @@ public class Alias {
 	public Alias() {
 		
 	}
+	
+	public Alias(String aliasName, Report report) {
+		super();
+		this.aliasName = aliasName;
+		this.report = report;
+	}
 
-	public Alias(Long aliasId, Long reportId, String aliasName, Report report) {
+	public Alias(Integer aliasId, Integer reportId, String aliasName, Report report) {
 		super();
 		this.aliasId = aliasId;
 		this.reportId = reportId;
@@ -46,19 +54,19 @@ public class Alias {
 		this.report = report;
 	}
 
-	public Long getAliasId() {
+	public Integer getAliasId() {
 		return aliasId;
 	}
 
-	public void setAliasId(Long aliasId) {
+	public void setAliasId(Integer aliasId) {
 		this.aliasId = aliasId;
 	}
 
-	public Long getReportId() {
+	public Integer getReportId() {
 		return reportId;
 	}
 
-	public void setReportId(Long reportId) {
+	public void setReportId(Integer reportId) {
 		this.reportId = reportId;
 	}
 

@@ -1,4 +1,4 @@
-package com.capstone.modal;
+package com.capstone.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

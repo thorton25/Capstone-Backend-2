@@ -30,13 +30,13 @@ public class AliasController {
 	@Autowired
 	private AliasRepository aliasRepository;
 	
-	@Autowired
-	private AliasMapper aliasMapper;
+//	@Autowired
+//	private AliasMapper aliasMapper;
 	
 	    
 	@GetMapping("/aliases/results/{aliasName}")
 	  public ResponseEntity<List<Alias>> findByAliasNameContaining(@PathVariable String aliasName) {
-	      List<Alias> aliases = aliasRepository.findByAliasNameContaining(aliasName);
+	      List<Alias> aliases = aliasRepository.fetchReportAliasDataLeftJoinContaining(aliasName);
 	      return ResponseEntity.ok(aliases);
 	      
 	  }
@@ -46,13 +46,13 @@ public class AliasController {
 		return aliasRepository.save(alias);
 	}
 	
-	@GetMapping("/aliases/results/reports/{reportName}")
-	  public ResponseEntity<List<Alias>> findByReportNameContaining(@PathVariable String reportName) {
-	      List<Alias> aliases = aliasRepository.findByAliasNameContaining(reportName);
-	      return ResponseEntity.ok(aliases);
-	      
-	  }
-	
+//	@GetMapping("/aliases/results/reports/{reportName}")
+//	  public ResponseEntity<List<Alias>> findByReportNameContaining(@PathVariable String reportName) {
+//	      List<Alias> aliases = aliasRepository.findByAliasNameContaining(reportName);
+//	      return ResponseEntity.ok(aliases);
+//	      
+//	  }
+//	
 	
 	
 //	@PutMapping("/reports/{id}")
@@ -68,7 +68,7 @@ public class AliasController {
 	
 	
 	
-	@DeleteMapping("/reports/live/{id}")
+	@DeleteMapping("/aliases/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteAlias(@PathVariable Long id){
 		Alias alias = aliasRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Alias does not exist with id :" + id));

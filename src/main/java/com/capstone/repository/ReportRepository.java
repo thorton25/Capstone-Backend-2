@@ -14,4 +14,6 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
 	
 	@Select ("SELECT  *  FROM t_report WHERE STATUS = 'A' AND REPORTNAME LIKE %#{name}%")
 	List<Report> findByStatusIsAndNameContaining(char status, String name);
+	
+	
 }

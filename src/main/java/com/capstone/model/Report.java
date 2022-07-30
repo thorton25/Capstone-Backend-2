@@ -1,30 +1,20 @@
 package com.capstone.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "t_report")
-public class Report implements Serializable {
+@SecondaryTable(name = "t_alias", pkJoinColumns = @PrimaryKeyJoinColumn(name = "REPORTID"))
+public class Report {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "REPORTID")
-	private Integer id;
+	private Long id;
 	
 	@Column (name = "REPORTNAME")
 	private String name;
@@ -86,21 +76,21 @@ public class Report implements Serializable {
 	@Column (name = "COMBINE_PDF_REPORT")
 	private Integer combinePdfReport;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="REPORTID")
-	@Fetch(FetchMode.JOIN)
-	private Alias alias;
+	@Column (name = "ALIAS", table = "t_alias")
+	private String aliasName;
+	
+
 	
 	public Report() {
 		
 	}
 
-	public Report(Integer id, String name, Integer historyMaxDays, Integer nonSpoolFile, String description,
+	public Report(Long id, String name, Integer historyMaxDays, Integer nonSpoolFile, String description,
 			Integer expirationDays, Integer skipPages,
 			String creationDate, String allowPrint, String addedBy, String modifiedBy, Integer as400Id, char status,
 			String multiReports, Integer allowOverrides, Integer numCols,
 			String confidential, String biReport, String help, String detailDescription,
-			Integer combinePdfReport, Alias alias) {
+			Integer combinePdfReport, String aliasName) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -123,14 +113,25 @@ public class Report implements Serializable {
 		this.help = help;
 		this.detailDescription = detailDescription;
 		this.combinePdfReport = combinePdfReport;
-		this.alias = alias;
+		this.aliasName = aliasName;
+	
+	}
+	
+	
+
+	public String getAliasName() {
+		return aliasName;
 	}
 
-	public Integer getId() {
+	public void setAliasName(String aliasName) {
+		this.aliasName = aliasName;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -293,14 +294,5 @@ public class Report implements Serializable {
 	public void setCombinePdfReport(Integer combinePdfReport) {
 		this.combinePdfReport = combinePdfReport;
 	}
-
-	public Alias getAlias() {
-		return alias;
-	}
-
-	public void setAlias(Alias alias) {
-		this.alias = alias;
-	}
-
 
 }

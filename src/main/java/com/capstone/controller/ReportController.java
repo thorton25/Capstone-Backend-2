@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,12 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capstone.dao.ReportMapper;
 import com.capstone.exception.ResourceNotFoundException;
 import com.capstone.model.Report;
 import com.capstone.repository.ReportRepository;
 
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 public class ReportController {
@@ -30,14 +28,10 @@ public class ReportController {
 	@Autowired
 	private ReportRepository reportRepository;
 	
-	@Autowired
-	private ReportMapper reportMapper;
-	
 
 	@GetMapping("/reports")
 	public List<Report> getAllReportss(){
 		return reportRepository.findAll();
-		//return reportMapper.getAllReports();
 	}
 	    
 	@GetMapping("/reports/results/{name}")
@@ -46,12 +40,6 @@ public class ReportController {
 	      return ResponseEntity.ok(reports);
 	      
 	  }
-	
-//	@GetMapping("/reports/results/{name}")
-//	public ResponseEntity<List<Report>> findAllContatining(@PathVariable String name){
-//		List<Report> searchedReports = reportMapper.searchReports(name);
-//		return ResponseEntity.ok(searchedReports);
-//	}
 	
 	@PostMapping("/reports")
 	public Report createReport(@RequestBody Report report) {

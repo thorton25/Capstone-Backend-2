@@ -40,7 +40,7 @@ public class AliasController {
 		return aliasRepository.save(alias);
 	}
 	
-	@GetMapping("/aliases/results/reports/{reportName}")
+	@GetMapping("/aliases/reports/results/{reportName}")
 	  public ResponseEntity<List<Object>> findByReportNameContaining(@PathVariable String reportName) {
 	      List<Object> aliases = aliasRepository.findAliasByReportNameContaining(reportName);
 	      return ResponseEntity.ok(aliases);
@@ -52,7 +52,7 @@ public class AliasController {
 //	@PutMapping("/aliases/{id}")
 //	public ResponseEntity<Alias> updateReports(@PathVariable Long id, @RequestBody Alias aliasDetails){
 //		Alias alias = aliasRepository.findById(id)
-//				.orElseThrow(() -> new ResourceNotFoundException("Report does not exist with id :" + id));
+//				.orElseThrow(() -> new ResourceNotFoundException("Alias does not exist with id :" + id));
 //		
 //		alias.setAliasName(aliasDetails.getAliasName());
 //		
@@ -72,6 +72,5 @@ public class AliasController {
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
-	
-	
+
 }

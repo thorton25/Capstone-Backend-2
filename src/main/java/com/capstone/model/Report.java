@@ -2,6 +2,8 @@ package com.capstone.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 public class Report {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "REPORTID")
 	private Long id;
 	
@@ -52,8 +55,14 @@ public class Report {
 	@Column (name = "STATUS")
 	private char status;
 	
+	@Column (name = "DELETEDBY")
+	private String deletedBy;
+	
 	@Column (name = "MULTIREPORTS")
 	private String multiReports;
+	
+	@Column (name = "FILENAME")
+	private String fileName;
 	
 	@Column (name = "ALLOWOVERRIDES")
 	private Integer allowOverrides;
@@ -76,21 +85,20 @@ public class Report {
 	@Column (name = "COMBINE_PDF_REPORT")
 	private Integer combinePdfReport;
 	
-	@Column (name = "ALIAS", table = "t_alias")
-	private String aliasName;
+//	@Column (name = "ALIAS", table = "t_alias")
+//	private String aliasName;
 	
 
-	
 	public Report() {
 		
 	}
 
+
 	public Report(Long id, String name, Integer historyMaxDays, Integer nonSpoolFile, String description,
-			Integer expirationDays, Integer skipPages,
-			String creationDate, String allowPrint, String addedBy, String modifiedBy, Integer as400Id, char status,
-			String multiReports, Integer allowOverrides, Integer numCols,
-			String confidential, String biReport, String help, String detailDescription,
-			Integer combinePdfReport, String aliasName) {
+			Integer expirationDays, Integer skipPages, String creationDate, String allowPrint, String addedBy,
+			String modifiedBy, Integer as400Id, char status, String deletedBy, String multiReports, String fileName,
+			Integer allowOverrides, Integer numCols, String confidential, String biReport, String help,
+			String detailDescription, Integer combinePdfReport) { //, String aliasName) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -105,7 +113,9 @@ public class Report {
 		this.modifiedBy = modifiedBy;
 		this.as400Id = as400Id;
 		this.status = status;
+		this.deletedBy = deletedBy;
 		this.multiReports = multiReports;
+		this.fileName = fileName;
 		this.allowOverrides = allowOverrides;
 		this.numCols = numCols;
 		this.confidential = confidential;
@@ -113,186 +123,248 @@ public class Report {
 		this.help = help;
 		this.detailDescription = detailDescription;
 		this.combinePdfReport = combinePdfReport;
-		this.aliasName = aliasName;
-	
-	}
-	
-	
-
-	public String getAliasName() {
-		return aliasName;
+		//this.aliasName = aliasName;
 	}
 
-	public void setAliasName(String aliasName) {
-		this.aliasName = aliasName;
-	}
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	public Integer getHistoryMaxDays() {
 		return historyMaxDays;
 	}
 
+
 	public void setHistoryMaxDays(Integer historyMaxDays) {
 		this.historyMaxDays = historyMaxDays;
 	}
+
 
 	public Integer getNonSpoolFile() {
 		return nonSpoolFile;
 	}
 
+
 	public void setNonSpoolFile(Integer nonSpoolFile) {
 		this.nonSpoolFile = nonSpoolFile;
 	}
+
 
 	public String getDescription() {
 		return description;
 	}
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 	public Integer getExpirationDays() {
 		return expirationDays;
 	}
 
+
 	public void setExpirationDays(Integer expirationDays) {
 		this.expirationDays = expirationDays;
 	}
+
 
 	public Integer getSkipPages() {
 		return skipPages;
 	}
 
+
 	public void setSkipPages(Integer skipPages) {
 		this.skipPages = skipPages;
 	}
+
 
 	public String getCreationDate() {
 		return creationDate;
 	}
 
+
 	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
+
 
 	public String getAllowPrint() {
 		return allowPrint;
 	}
 
+
 	public void setAllowPrint(String allowPrint) {
 		this.allowPrint = allowPrint;
 	}
+
 
 	public String getAddedBy() {
 		return addedBy;
 	}
 
+
 	public void setAddedBy(String addedBy) {
 		this.addedBy = addedBy;
 	}
+
 
 	public String getModifiedBy() {
 		return modifiedBy;
 	}
 
+
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
+
 
 	public Integer getAs400Id() {
 		return as400Id;
 	}
 
+
 	public void setAs400Id(Integer as400Id) {
 		this.as400Id = as400Id;
 	}
+
 
 	public char getStatus() {
 		return status;
 	}
 
+
 	public void setStatus(char status) {
 		this.status = status;
 	}
+
+
+	public String getDeletedBy() {
+		return deletedBy;
+	}
+
+
+	public void setDeletedBy(String deletedBy) {
+		this.deletedBy = deletedBy;
+	}
+
 
 	public String getMultiReports() {
 		return multiReports;
 	}
 
+
 	public void setMultiReports(String multiReports) {
 		this.multiReports = multiReports;
 	}
+
+
+	public String getFileName() {
+		return fileName;
+	}
+
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 
 	public Integer getAllowOverrides() {
 		return allowOverrides;
 	}
 
+
 	public void setAllowOverrides(Integer allowOverrides) {
 		this.allowOverrides = allowOverrides;
 	}
+
 
 	public Integer getNumCols() {
 		return numCols;
 	}
 
+
 	public void setNumCols(Integer numCols) {
 		this.numCols = numCols;
 	}
+
 
 	public String getConfidential() {
 		return confidential;
 	}
 
+
 	public void setConfidential(String confidential) {
 		this.confidential = confidential;
 	}
+
 
 	public String getBiReport() {
 		return biReport;
 	}
 
+
 	public void setBiReport(String biReport) {
 		this.biReport = biReport;
 	}
+
 
 	public String getHelp() {
 		return help;
 	}
 
+
 	public void setHelp(String help) {
 		this.help = help;
 	}
+
 
 	public String getDetailDescription() {
 		return detailDescription;
 	}
 
+
 	public void setDetailDescription(String detailDescription) {
 		this.detailDescription = detailDescription;
 	}
+
 
 	public Integer getCombinePdfReport() {
 		return combinePdfReport;
 	}
 
+
 	public void setCombinePdfReport(Integer combinePdfReport) {
 		this.combinePdfReport = combinePdfReport;
 	}
+
+
+//	public String getAliasName() {
+//		return aliasName;
+//	}
+//
+//
+//	public void setAliasName(String aliasName) {
+//		this.aliasName = aliasName;
+//	}
+
 
 }

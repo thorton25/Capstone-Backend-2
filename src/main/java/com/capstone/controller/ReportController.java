@@ -20,7 +20,7 @@ import com.capstone.exception.ResourceNotFoundException;
 import com.capstone.model.Report;
 import com.capstone.repository.ReportRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 public class ReportController {
@@ -36,7 +36,7 @@ public class ReportController {
 	    
 	@GetMapping("/reports/results/{name}")
 	  public ResponseEntity<List<Report>> findByActiveAndNameContaining(@PathVariable String name) {
-	      List<Report> reports = reportRepository.findByStatusIsAndNameContaining('A', name);
+	      List<Report> reports = reportRepository.findByNameContaining(name);
 	      return ResponseEntity.ok(reports);
 	      
 	  }
@@ -68,12 +68,13 @@ public class ReportController {
 	
 	
 	@PutMapping("/reports/deactivate/{id}")
-	public ResponseEntity<Report> deactivateReport(@PathVariable Long id){
+	public ResponseEntity<Report> deactivateReport(@PathVariable Long id){ //@RequestBody Report reportDetails){
 		Report report = reportRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Report does not exist with id :" + id));
 		
 		//report.setName(reportDetails.getName());
 		report.setStatus('D');
+		//report.setDeletedBy(reportDetails.getDeletedBy());
 		
 		Report updatedReport = reportRepository.save(report);
 		return ResponseEntity.ok(updatedReport);
@@ -90,7 +91,5 @@ public class ReportController {
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
-	
-	
 	
 }

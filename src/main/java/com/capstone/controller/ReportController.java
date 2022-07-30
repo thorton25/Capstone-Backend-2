@@ -20,7 +20,7 @@ import com.capstone.exception.ResourceNotFoundException;
 import com.capstone.model.Report;
 import com.capstone.repository.ReportRepository;
 
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 public class ReportController {

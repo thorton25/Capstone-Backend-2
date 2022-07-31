@@ -66,7 +66,6 @@ public class AliasController {
 	public ResponseEntity<Map<String, Boolean>> deleteAlias(@PathVariable Long id){
 		Alias alias = aliasRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Alias does not exist with id :" + id));
-		
 		aliasRepository.delete(alias);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);

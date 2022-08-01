@@ -30,7 +30,7 @@ public class ReportController {
 	
 
 	@GetMapping("/reports")
-	public List<Report> getAllReportss(){
+	public List<Report> getAllReports(){
 		return reportRepository.findAll();
 	}
 	    
@@ -40,6 +40,12 @@ public class ReportController {
 	      return ResponseEntity.ok(reports);
 	      
 	  }
+	
+	@GetMapping("reports/as400name/results/{name}")
+	public ResponseEntity<List<Object>> findbyReportNameContaining(@PathVariable String name){
+		List<Object> reports = reportRepository.findByReportNameContaining(name);
+		return ResponseEntity.ok(reports);
+	}
 	
 	@PostMapping("/reports")
 	public Report createReport(@RequestBody Report report) {

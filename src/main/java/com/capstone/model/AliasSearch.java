@@ -5,15 +5,13 @@ public class AliasSearch {
 	private String reportName;
 	private String aliasName;
 	
-	public AliasSearch() {
-		
-	}
 
 	public AliasSearch(String reportName, String aliasName) {
 		super();
 		this.reportName = reportName;
 		this.aliasName = aliasName;
 	}
+	
 
 	public String getReportName() {
 		return reportName;

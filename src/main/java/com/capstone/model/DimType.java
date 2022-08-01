@@ -12,8 +12,8 @@ import javax.persistence.Table;
 public class DimType {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "DIMTD")
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name = "DIMTID")
 	private Long id;
 	
 	@Column (name = "DIMTNAME")

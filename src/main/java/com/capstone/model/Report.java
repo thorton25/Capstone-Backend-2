@@ -123,7 +123,7 @@ public class Report {
 		this.help = help;
 		this.detailDescription = detailDescription;
 		this.combinePdfReport = combinePdfReport;
-		//this.aliasName = aliasName;
+		
 	}
 
 

@@ -21,8 +21,8 @@ public interface AliasRepository extends JpaRepository<Alias, Long>{
 	
 	@Query(value = "SELECT NEW com.capstone.model.AliasSearch(r.name, a.aliasName) FROM Report AS r, Alias AS a WHERE a.reportId = r.id "
 			+ "AND r.name "
-			+ " LIKE CONCAT('%', :aliasName, '%')")
-	List<Object> findAliasByReportNameContaining(@Param(value="aliasName")String aliasName);
+			+ " LIKE CONCAT('%', :reportName, '%')")
+	List<Object> findAliasByReportNameContaining(@Param(value="aliasName")String reportName);
 	
 //	@Query(value = "SELECT r.REPORTNAME, a.ALIAS FROM t_report r, t_alias a WHERE a.REPORTID = r.REPORTID AND a.ALIAS "
 //			+ " LIKE CONCAT('%', :aliasName, '%')", nativeQuery=true)

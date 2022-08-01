@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.capstone.model.Alias;
-import com.capstone.model.AliasSearch;
 
 @Repository
 public interface AliasRepository extends JpaRepository<Alias, Long>{

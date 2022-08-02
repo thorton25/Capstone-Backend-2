@@ -18,7 +18,7 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
 	@Query (value="SELECT  *  FROM t_report WHERE STATUS = 'A' AND REPORTNAME LIKE %:name%", nativeQuery=true)
 	List<Report> findByNameContaining(@Param(value="name")String name);
 	
-	@Query("SELECT NEW com.capstone.model.ReportSearch(r.name, a.as400Name, r.status, r.nonSpoolFile, r.skipPages, "
+	@Query("SELECT NEW com.capstone.model.ReportSearch(r.id, r.name, a.as400Name, r.status, r.nonSpoolFile, r.skipPages, "
 			+ "r.creationDate)  from Report r, AS400 a WHERE r.as400Id = a.as400Id AND "
 			+ "r.status = 'A' AND r.name like %:reportName%")
     List<Object> findByReportNameContaining(@Param(value = "reportName") String reportName);

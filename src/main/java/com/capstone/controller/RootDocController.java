@@ -34,9 +34,9 @@ public class RootDocController {
 		return rootDocRepository.findAll();
 	}
 	    
-	@GetMapping("/rootdocs/results/{name}")
-	  public ResponseEntity<List<RootDoc>> findByActiveAndNameContaining(@PathVariable String title) {
-	      List<RootDoc> rootDocs = rootDocRepository.findByRootDocTitleContaining(title);
+	@GetMapping("/rootdocs/results/{title}")
+	  public ResponseEntity<List<Object>> findByActiveAndNameContaining(@PathVariable String title) {
+	      List<Object> rootDocs = rootDocRepository.findByRootDocTitleContaining(title);
 	      return ResponseEntity.ok(rootDocs);
 	      
 	  }

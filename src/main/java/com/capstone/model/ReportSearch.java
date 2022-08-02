@@ -2,6 +2,7 @@ package com.capstone.model;
 
 public class ReportSearch {
 	
+	private Long id;
 	private String reportName;
 	private String as400Name;
 	private char status;
@@ -9,15 +10,24 @@ public class ReportSearch {
 	private Integer skipPages;
 	private String creationDate;
 	
-	public ReportSearch(String reportName, String as400Name, char status, Integer nonSpoolFile, Integer skipPages,
-			String creationDate) {
+	public ReportSearch(Long id, String reportName, String as400Name, char status, Integer nonSpoolFile,
+			Integer skipPages, String creationDate) {
 		super();
+		this.id = id;
 		this.reportName = reportName;
 		this.as400Name = as400Name;
 		this.status = status;
 		this.nonSpoolFile = nonSpoolFile;
 		this.skipPages = skipPages;
 		this.creationDate = creationDate;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getReportName() {
@@ -67,6 +77,7 @@ public class ReportSearch {
 	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
+
 	
 
 }

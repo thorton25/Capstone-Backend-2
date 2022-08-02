@@ -26,12 +26,56 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
           .password(encoder().encode("a"))
           .roles("USER").build());
         manager.createUser(User
-          .withUsername("501361697")
-          .password(encoder().encode("b"))
-          .roles("USER").build());
-        manager.createUser(User
                 .withUsername("b")
                 .password(encoder().encode("b"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("501361697")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("501493526")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("501743128")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("501979437")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600016105")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600016951")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600028988")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600117930")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600121429")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600139301")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600149559")
+                .password(encoder().encode("Test@1234"))
+                .roles("USER").build());
+        manager.createUser(User
+                .withUsername("600158488")
+                .password(encoder().encode("Test@1234"))
                 .roles("USER").build());
         return manager;
     }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.exception.ResourceNotFoundException;
+import com.capstone.model.Report;
 import com.capstone.model.RootDoc;
 import com.capstone.repository.RootDocRepository;
 
@@ -40,4 +41,15 @@ public class RootDocController {
 	      return ResponseEntity.ok(rootDocs);
 	      
 	  }
+	
+	@DeleteMapping("/rootdocs/live/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteRootDoc(@PathVariable Long id){
+		RootDoc rootDoc = rootDocRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Root Doc does not exist with id :" + id));
+		
+		rootDocRepository.delete(rootDoc);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+	}
 }
